@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Teste de JavaScript!</title>
+    </head>
+    <body>
+        <h1>Teste de HTML DOM</h1>
+        <button onclick="inserir_html_div()">INSERIR</button>
+        <div id="raiz"></div>
+    </body>
+    <script>
+        function chamar_alert(){
+            alert("Teste de script!")
+        }
+
+        function inserir_html_div(){
+            const div_raiz = document.getElementById("raiz")
+            div_raiz.innerHTML = "TEXTO INSERIDO!"
+        }
+
+        //chamar_alert()
+        //inserir_html_div()
+    </script>
+</html>

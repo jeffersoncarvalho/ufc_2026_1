@@ -1,32 +1,19 @@
-import MyProfile from "./components/MyProfile"
+import "./App.css"
 
-/*function App() {
+import StudentProfile from "./components/StudentProfile"
+
+const App = () => {
   return (
     <>
-      <h1>Prof. Jefferson de Carvalho</h1>
-      <h3>Projeto de Interfaces WEB</h3>
-      <p>
-        Teste de parágrafo!
-        <span>Teste de span</span>
-        <span>Teste de span</span>
-      </p>
+      <StudentProfile 
+        name="Jefferson"
+        imgSrc="https://www.quixada.ufc.br/wp-content/uploads/2015/11/Jo%C3%A3o-225x300.png"
+        imgAlt="Imagem do estudante"
+        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem sunt, debitis laudantium magni sapiente voluptate quam, repellat adipisci perspiciatis doloribus labore. Dolor necessitatibus nihil esse tempore eos sint, modi culpa."
+      />
+      
     </>
   )
 }
-*/
-
-/*const App = () => {
-  return <>
-    <h1>Teste de Função SETA</h1>
-  </>
-}*/
-
-const App = () => 
-  <>
-    <MyProfile />
-    <MyProfile />
-
-  </>
-
 
 export default App

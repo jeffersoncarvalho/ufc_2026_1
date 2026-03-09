@@ -1,0 +1,1 @@
+//faça a mesma coisa do studentprofile. Crie um css também! E chame o componente em App.jsx

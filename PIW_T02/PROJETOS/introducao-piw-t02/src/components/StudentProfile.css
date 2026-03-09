@@ -1,0 +1,62 @@
+.student-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 220px;
+  padding: 20px 22px 16px;
+  gap: 14px;
+
+  background-color: #FAFAFA;
+  border-top: 5px solid #1B3A5C;
+  border-radius: 4px;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.10),
+    0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.student-title {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #D6D6D6;
+}
+
+.student-title h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #1B3A5C;
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+}
+
+.student-photo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.student-photo img {
+  width: 110px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #FAFAFA;
+  outline: 3px solid #1B3A5C;
+  outline-offset: 3px;
+}
+
+.student-description {
+  width: 100%;
+  padding-top: 4px;
+}
+
+.student-description p {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #4A5568;
+  line-height: 1.75;
+  text-align: justify;
+  font-style: italic;
+}
