@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TESTE DOM</title>
+    </head>
+    <body>
+        <h1>ANTES DA DIV</h1>
+        <div id="teste"></div>
+        <h1>DEPOIS DA DIV</h1>
+        <button onclick="inserirHTML()">INSERIR HTML</button>
+        <script>
+            
+            function mostrarPI() {
+                const pi = 3.14
+                alert("O valor de PI é: " + pi)
+            }
+
+            function inserirHTML(){
+                const minhaDiv = document.getElementById("teste")
+                minhaDiv.innerHTML = "JEFFERSON"
+            }
+
+            
+        </script>
+    </body>
+</html>
