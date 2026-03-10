@@ -4,8 +4,16 @@ import StudentProfile from "./components/StudentProfile";
 
 const App = () => 
 <div className="container">
-      <StudentProfile />
-      
+      <StudentProfile 
+        name = "André Ribeiro"
+        imgSrc = "https://www.quixada.ufc.br/wp-content/uploads/2016/02/Andr%C3%A9_Ribeiro_Braga1-225x300.png"
+        description = "Esse é o professor André, famoso por suas aulas de Cálculo I."
+      />
+      <StudentProfile 
+        name = "Paulo Victor"
+        imgSrc = "https://www.quixada.ufc.br/wp-content/uploads/2015/05/IMG_5261-e1528236686735-1-e1565125544566-208x300.jpg"
+        description = "Esse é o professor PV, famoso por suas aulas de Tipografia."
+      />       
 </div>
 
 /*const App = () => 
