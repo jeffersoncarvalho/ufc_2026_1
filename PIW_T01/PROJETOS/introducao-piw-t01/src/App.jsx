@@ -1,8 +1,14 @@
 import "./App.css"
 
-import StudentProfile from "./components/StudentProfile";
+//import StudentProfile from "./components/StudentProfile";
+import StudentProfileList from "./components/StudentProfileList";
 
 const App = () => 
+  <div className="container">
+    <StudentProfileList />
+  </div>
+
+/*const App = () => 
 <div className="container">
       <StudentProfile 
         name = "André Ribeiro"
@@ -15,7 +21,7 @@ const App = () =>
         description = "Esse é o professor PV, famoso por suas aulas de Tipografia."
       />       
 </div>
-
+*/
 /*const App = () => 
 <div className="container">
       <h1>Prof. Jefferson de Carvalho</h1>
