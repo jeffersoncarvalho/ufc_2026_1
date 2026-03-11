@@ -1,7 +1,14 @@
 import "./StudentProfile.css";
 
-const StudentProfile = ({name, imgSrc, imgAlt, description}) => (
-  <div className="student-card">
+function selectMonitor(monitor) {
+  if (monitor) return {borderColor:"red"}
+  return {}
+}
+
+const StudentProfile = ({name, imgSrc, description, monitor}) => (
+
+
+  <div className="student-card" style={selectMonitor(monitor)}>
     <div className="student-title">
         
       <h2>{name}</h2>
@@ -9,7 +16,7 @@ const StudentProfile = ({name, imgSrc, imgAlt, description}) => (
     <div className="student-photo">
       <img
         src={imgSrc}
-        alt={imgAlt}
+        alt={`Este é o estudante ${name}`}
       />
     </div>
     <div className="student-description">

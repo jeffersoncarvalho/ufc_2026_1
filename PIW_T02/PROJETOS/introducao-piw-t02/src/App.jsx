@@ -1,8 +1,17 @@
 import "./App.css"
 
-import StudentProfile from "./components/StudentProfile"
+//import StudentProfile from "./components/StudentProfile"
+import StudentProfileList from "./components/StudentProfileList"
 
 const App = () => {
+  return (
+    <>
+      <StudentProfileList />
+    </>
+  )
+}
+
+/*const App = () => {
   return (
     <>
       <StudentProfile 
@@ -14,6 +23,6 @@ const App = () => {
       
     </>
   )
-}
+}*/
 
 export default App
