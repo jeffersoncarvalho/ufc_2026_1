@@ -1,10 +1,10 @@
 import './App.css'
+import FormComponent from './components/01_formularios/FormComponent'
 
 function App() {
   return (
     <div className="container">
-      <h1>Bem-vindo ao React, usando Vite!</h1>
-      <h3>Prof. Jefferson de Carvalho Silva</h3>
+      <FormComponent />
     </div>
   )
 }
