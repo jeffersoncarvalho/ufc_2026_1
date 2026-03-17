@@ -1,11 +1,12 @@
-import "./App.css"
+//import "./App.css"
 
 //import StudentProfile from "./components/StudentProfile";
-import StudentProfileList from "./components/StudentProfileList";
+//import StudentProfileList from "./components/StudentProfileList";
+import PokemonPages from "./components/aula_03/PokemonPages";
 
 const App = () => 
   <div className="container">
-    <StudentProfileList />
+    <PokemonPages />
   </div>
 
 /*const App = () => 

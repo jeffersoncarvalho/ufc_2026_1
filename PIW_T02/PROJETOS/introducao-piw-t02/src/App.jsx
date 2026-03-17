@@ -1,15 +1,14 @@
-import "./App.css"
-
-//import StudentProfile from "./components/StudentProfile"
-import StudentProfileList from "./components/StudentProfileList"
+import PokemonPages from "./components/aula_03/PokemonPages"
 
 const App = () => {
   return (
     <>
-      <StudentProfileList />
+      <PokemonPages />
     </>
   )
 }
+
+export default App
 
 /*const App = () => {
   return (
@@ -25,4 +24,3 @@ const App = () => {
   )
 }*/
 
-export default App
