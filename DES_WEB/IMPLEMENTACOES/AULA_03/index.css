@@ -1,0 +1,12 @@
+/*parágrafo genérico*/
+p {
+    background-color: brown;
+}
+/*minha classe*/
+.minha-classe {
+    background-color: aquamarine;
+}
+/*meu id*/
+#meu-id {
+    background-color: crimson;
+}

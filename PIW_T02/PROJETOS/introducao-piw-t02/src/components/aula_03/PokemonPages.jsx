@@ -4,14 +4,14 @@ const PokemonPages = () => {
 
     const spriteURL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
     
-    const [id, setId] = useState(100)
+    const [id, setId] = useState(25)
 
     const addId = () => {
-        setId((prevId) => prevId + 1)
+        if( id + 1 <= 50) setId((prevId) => prevId + 1)
     }
 
     const subId = () => {
-        setId((prevId) => prevId - 1)
+        if ( id - 1  > 0) setId((prevId) => prevId - 1)
     }
 
     return (
@@ -26,7 +26,7 @@ const PokemonPages = () => {
                 <div className="card" style={{width:300}}>
                     <img src={spriteURL + id + ".png"} className="card-img-top" alt="Pokemon" style={{width:250}}/>
                     <div className="card-body">
-                        <h5 className="card-title">Nome do Pokemon</h5>
+                        <h5 className="card-title">{id} - Nome do Pokemon</h5>
                         <p className="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla cumque aliquid odit, sint ducimus amet omnis eaque expedita odio veritatis voluptatum vero blanditiis possimus earum laudantium, ut suscipit laboriosam cum.</p>
                         <div style={{display:"flex", justifyContent:"space-between"}}>
                             <button className="btn btn-primary" onClick={subId}>Diminuir</button>
