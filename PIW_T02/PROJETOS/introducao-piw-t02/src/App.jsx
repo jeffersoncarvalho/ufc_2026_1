@@ -1,9 +1,9 @@
-import PokemonPages from "./components/aula_03/PokemonPages"
-
+//import PokemonPages from "./components/aula_03/PokemonPages"
+import MeuFormulario from "./components/aula_04/MeuFormulario"
 const App = () => {
   return (
     <>
-      <PokemonPages />
+      <MeuFormulario />
     </>
   )
 }
