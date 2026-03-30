@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atividade – Desenvolvimento de Site</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f4ef;
+      --surface: #ffffff;
+      --border: #dddbd3;
+      --accent: #1a3a5c;
+      --accent-light: #e8eef5;
+      --accent2: #c84b22;
+      --accent2-light: #fdf0eb;
+      --text: #1a1a18;
+      --muted: #6b6960;
+      --tag-bg: #eceae3;
+      --check: #2d7a5a;
+      --check-bg: #eaf4ee;
+      --warn: #8a5200;
+      --warn-bg: #fff5e0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .wrapper { max-width: 860px; margin: 0 auto; }
+
+    /* ── Header ── */
+    .header {
+      background: var(--accent);
+      color: #fff;
+      border-radius: 16px;
+      padding: 2.5rem 3rem;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.08);
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: 40px;
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.06);
+    }
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .badge {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.14);
+      padding: 5px 12px;
+      border-radius: 20px;
+      color: rgba(255,255,255,0.9);
+      white-space: nowrap;
+    }
+    .header h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #ffffff;
+      max-width: 540px;
+    }
+    .header h1 span { color: #f4a96e; }
+    .header-meta {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .meta-item {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+    }
+    .meta-item strong { color: #fff; font-weight: 600; }
+
+    /* ── Intro card ── */
+    .intro-card {
+      background: var(--accent2-light);
+      border: 1px solid #f2c5ad;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+      font-size: 14.5px;
+      color: #5a2008;
+      line-height: 1.7;
+    }
+    .intro-card strong { color: var(--accent2); }
+
+    /* ── Section ── */
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      background: #fafaf8;
+    }
+    .section-icon {
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .icon-blue  { background: var(--accent-light); }
+    .icon-red   { background: var(--accent2-light); }
+    .icon-green { background: var(--check-bg); }
+    .icon-amber { background: var(--warn-bg); }
+    .icon-gray  { background: var(--tag-bg); }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.01em;
+    }
+    .section-subtitle {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+    .section-body { padding: 1.25rem 1.5rem; }
+
+    /* ── Requirements grid ── */
+    .req-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 560px) { .req-grid { grid-template-columns: 1fr; } }
+
+    .req-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 10px 12px;
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+    .req-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+    .dot-blue  { background: #3a7ec4; }
+    .dot-red   { background: var(--accent2); }
+    .dot-green { background: #2d8c5f; }
+    .dot-amber { background: #c47e00; }
+
+    /* ── Tag list ── */
+    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .tag {
+      font-size: 12px;
+      background: var(--tag-bg);
+      color: var(--muted);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-family: 'Inter', monospace;
+      font-weight: 500;
+    }
+    .tag.green { background: var(--check-bg); color: var(--check); }
+    .tag.blue  { background: var(--accent-light); color: #1a3a5c; }
+    .tag.red   { background: var(--accent2-light); color: #8c2e10; }
+    .tag.amber { background: var(--warn-bg); color: var(--warn); }
+
+    /* ── Note box ── */
+    .note {
+      border-radius: 9px;
+      padding: 10px 14px;
+      font-size: 13px;
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .note.green { background: var(--check-bg); color: #1e5e3e; border: 1px solid #bde3ce; }
+    .note.amber { background: var(--warn-bg); color: var(--warn); border: 1px solid #f4d48a; }
+    .note-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── Divider text ── */
+    .divider {
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+      margin: 1.25rem 0 1rem;
+    }
+
+    /* ── Entrega box ── */
+    .entrega {
+      background: var(--accent);
+      color: #fff;
+      border-radius: 14px;
+      padding: 1.75rem 2rem;
+      margin-top: 2rem;
+    }
+    .entrega h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+    .entrega-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 480px) { .entrega-grid { grid-template-columns: 1fr; } }
+    .entrega-item {
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 13.5px;
+    }
+    .entrega-item .label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 4px;
+    }
+    .entrega-item .value { color: #fff; font-weight: 500; }
+    .files-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .file-pill {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      padding: 7px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: monospace;
+      color: #f4e3c8;
+    }
+
+    /* ── Criterios ── */
+    .criterios-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    @media (max-width: 600px) { .criterios-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 400px) { .criterios-grid { grid-template-columns: 1fr; } }
+    .crit-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      text-align: center;
+    }
+    .crit-pts {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .crit-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+    .crit-total {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+    }
+    .crit-total .crit-pts { color: #f4a96e; font-size: 2rem; }
+    .crit-total .crit-label { color: rgba(255,255,255,0.75); }
+
+    /* ── Footer ── */
+    .doc-footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 12px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ── Header ── -->
+  <div class="header">
+    <div class="header-top">
+      <span class="badge">Desenvolvimento Web</span>
+      <span class="badge">HTML &amp; CSS</span>
+    </div>
+    <h1>Atividade Prática:<br /><span>Crie sua Página Web</span></h1>
+    <div class="header-meta">
+      <div class="meta-item"><strong>Modalidade:</strong> Individual</div>
+      <div class="meta-item"><strong>Entregáveis:</strong> index.html + index.css</div>
+      <div class="meta-item"><strong>Tema:</strong> Livre</div>
+    </div>
+  </div>
+
+  <!-- ── Intro ── -->
+  <div class="intro-card">
+    O aluno deverá desenvolver uma <strong>página inicial (index.html)</strong> sobre um tema de sua escolha — pode ser um portfólio pessoal, uma série, personagem fictício, banda de música, anime, cidade turística, jogo, etc. O conteúdo pode ser real ou gerado por IA. Devem ser criados <strong>exatamente dois arquivos</strong>: <code>index.html</code> e <code>index.css</code>.
+  </div>
+
+  <!-- ── Estrutura da Página ── -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-title">Estrutura da Página</div>
+        <div class="section-subtitle">Seções obrigatórias no layout</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="req-grid">
+        <div class="req-item"><div class="req-dot dot-blue"></div>Topo com o <strong>nome do site</strong> ou logomarca</div>
+        <div class="req-item"><div class="req-dot dot-blue"></div><strong>Menu de navegação</strong> com ao menos 4 links dispostos horizontalmente</div>
+        <div class="req-item"><div class="req-dot dot-blue"></div><strong>Favicon</strong> (ícone de preferência) configurado na página</div>
+        <div class="req-item"><div class="req-dot dot-blue"></div><strong>Corpo principal</strong> com o conteúdo do site</div>
+        <div class="req-item" style="grid-column: 1 / -1"><div class="req-dot dot-blue"></div>
+          <div><strong>Rodapé</strong> com: nome do aluno · matrícula · nome da universidade · e-mail institucional</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Conteúdo do Corpo ── -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-title">Conteúdo do Corpo</div>
+        <div class="section-subtitle">Elementos obrigatórios no &lt;main&gt;</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="req-grid">
+        <div class="req-item"><div class="req-dot dot-red"></div>No mínimo <strong>4 parágrafos</strong> de conteúdo</div>
+        <div class="req-item"><div class="req-dot dot-red"></div>No mínimo <strong>1 imagem</strong> (com legenda)</div>
+        <div class="req-item"><div class="req-dot dot-red"></div><strong>Cabeçalho</strong> para cada parágrafo</div>
+        <div class="req-item"><div class="req-dot dot-red"></div>Ao menos uma <strong>lista não ordenada</strong></div>
+        <div class="req-item" style="grid-column: 1 / -1"><div class="req-dot dot-red"></div>
+          Ao menos uma <strong>tabela</strong> com mínimo de <strong>3 linhas</strong> e <strong>2 colunas</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── HTML ── -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-title">Requisitos de HTML</div>
+        <div class="section-subtitle">Marcação semântica e boas práticas</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="divider">No &lt;head&gt;</div>
+      <div class="req-grid">
+        <div class="req-item"><div class="req-dot dot-amber"></div>Meta de <strong>autoria</strong> (<code>name="author"</code>) e <strong>codificação</strong> (<code>charset="UTF-8"</code>)</div>
+        <div class="req-item"><div class="req-dot dot-amber"></div>Tag <code>&lt;title&gt;</code> com o título da página</div>
+        <div class="req-item" style="grid-column: 1 / -1"><div class="req-dot dot-amber"></div>
+          Importação do arquivo CSS externo via <code>&lt;link rel="stylesheet"&gt;</code>
+        </div>
+      </div>
+
+      <div class="divider">Tags Semânticas Obrigatórias</div>
+      <div class="tag-list">
+        <span class="tag blue">&lt;nav&gt;</span>
+        <span class="tag blue">&lt;main&gt;</span>
+        <span class="tag blue">&lt;article&gt;</span>
+        <span class="tag blue">&lt;footer&gt;</span>
+        <span class="tag blue">&lt;section&gt;</span>
+      </div>
+
+      <div class="divider">Imagens</div>
+      <div class="req-grid">
+        <div class="req-item"><div class="req-dot dot-amber"></div>Atributo <code>alt</code> em todas as imagens</div>
+        <div class="req-item"><div class="req-dot dot-amber"></div>Legenda via <code>&lt;figure&gt;</code> e <code>&lt;figcaption&gt;</code></div>
+      </div>
+
+      <div class="divider">Tabelas</div>
+      <div class="req-grid" style="grid-template-columns: 1fr">
+        <div class="req-item"><div class="req-dot dot-amber"></div>
+          Usar tags semânticas:&nbsp;
+          <span class="tag" style="display:inline-flex;">&lt;thead&gt;</span>&nbsp;
+          <span class="tag" style="display:inline-flex;">&lt;tbody&gt;</span>&nbsp;
+          <span class="tag" style="display:inline-flex;">&lt;tfoot&gt;</span>&nbsp;
+          <span class="tag" style="display:inline-flex;">&lt;th&gt;</span>&nbsp;
+          <span class="tag" style="display:inline-flex;">&lt;td&gt;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CSS ── -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-title">Requisitos de CSS</div>
+        <div class="section-subtitle">Estilo e organização visual</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="req-grid">
+        <div class="req-item"><div class="req-dot dot-green"></div>Escrito em arquivo <strong>separado</strong> (<code>index.css</code>) e importado no HTML</div>
+        <div class="req-item"><div class="req-dot dot-green"></div>Estilizar <strong>fontes, cores e espaçamentos</strong></div>
+        <div class="req-item"><div class="req-dot dot-green"></div><strong>Cores distintas</strong> para topo, corpo e rodapé</div>
+        <div class="req-item"><div class="req-dot dot-green"></div><strong>Flexbox</strong> para organização do layout</div>
+        <div class="req-item"><div class="req-dot dot-green"></div><strong>Pseudo-classes</strong> nos links (<code>:hover</code>, <code>:visited</code>, etc.)</div>
+        <div class="req-item">
+          <div class="req-dot dot-green"></div>
+          <div>Ao menos <strong>3 classes</strong> e <strong>3 IDs</strong> definidos no CSS</div>
+        </div>
+      </div>
+      <div class="note green" style="margin-top: 14px;">
+        <span>Pesquise como fazer a utilização do Google Fonts ou uma fonte da web para enriquecer a tipografia do site.</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="doc-footer">
+    Disciplina de Desenvolvimento Web · Atividade Prática 01
+  </div>
+
+</div>
+</body>
+</html>
