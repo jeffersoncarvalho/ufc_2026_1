@@ -72,7 +72,7 @@ As tabelas devem ser construídas com tags semânticas:
 - **Pseudo-classes** nos links (`:hover`, `:visited`, etc.)
 - Ao menos **3 classes** e **3 IDs** definidos no CSS
 
-> Recomenda-se utilizar Google Fonts ou outra fonte da web para enriquecer a tipografia do site.
+> Pesquise como fazer a utilização do Google Fonts ou uma fonte da web para enriquecer a tipografia do site.
 
 ---
 
