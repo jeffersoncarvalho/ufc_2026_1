@@ -1,10 +1,12 @@
 //import PokemonPages from "./components/aula_03/PokemonPages"
 //import MeuFormulario from "./components/aula_04/MeuFormulario"
-import MeuContador from "./components/aula_05/MeuContador"
+//import MeuContador from "./components/aula_05/MeuContador"
+import ComponentePokemon from "./components/aula_06/ComponentePokemon"
+
 const App = () => {
   return (
     <>
-      <MeuContador />
+      <ComponentePokemon />
     </>
   )
 }
