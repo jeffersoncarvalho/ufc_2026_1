@@ -1,9 +1,10 @@
 //import PokemonPages from "./components/aula_03/PokemonPages"
-import MeuFormulario from "./components/aula_04/MeuFormulario"
+//import MeuFormulario from "./components/aula_04/MeuFormulario"
+import MeuContador from "./components/aula_05/MeuContador"
 const App = () => {
   return (
     <>
-      <MeuFormulario />
+      <MeuContador />
     </>
   )
 }

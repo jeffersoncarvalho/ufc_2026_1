@@ -1,0 +1,34 @@
+PRIMEIRA PROVA PARCIAL
+
+- Conceitos básicos do React 
+ - O que um componente
+ - O que são propriedades (props)
+ - Principais tecnologias (Vite, Next, CRA)
+ - Criação de projetos
+ - Execução de projetos
+ - Organização das pastas
+ - Tipos de arquivo (js, jsx, html, css, json)
+
+- Criação de Componentes (usando funções e funções arrow)
+- Exportando Componentes
+- Propriedades e componentes reusáveis (props)
+- Hierarquia de Componentes (App.js -> <componentes criados por você>)
+
+- Estados (useState)
+- Formulários com estado
+- Efeitos (useEffect)
+- Contextos (useContext)
+- Referências (useRef)
+- SessionStorage e LocalStorage (sessões)
+
+- Promessas
+- Async\Await - Then\Catch
+- Fetch e Axios
+
+- Conceitos básicos de Javascript
+ - Funções, funções callback
+ - Constantes, let, var
+ - Laços, estruturas de controle, tipos primitivos
+
+ 
+ 
