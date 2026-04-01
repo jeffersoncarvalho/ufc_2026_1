@@ -3,11 +3,12 @@
 //import StudentProfile from "./components/StudentProfile";
 //import StudentProfileList from "./components/StudentProfileList";
 //import PokemonPages from "./components/aula_03/PokemonPages";
-import FormularioAluno from "./components/aula_04/FormularioAluno";
-
+//import FormularioAluno from "./components/aula_04/FormularioAluno";
+//import MeuContador from "./components/aula_05/MeuContador";
+import CarregarPokemons from "./components/aula_06/CarregarPokemons";
 const App = () => 
   <div className="container">
-    <FormularioAluno />
+    <CarregarPokemons />
   </div>
 
 /*const App = () => 

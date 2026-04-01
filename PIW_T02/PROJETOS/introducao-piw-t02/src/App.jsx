@@ -6,7 +6,7 @@ import ComponentePokemon from "./components/aula_06/ComponentePokemon"
 const App = () => {
   return (
     <>
-      <ComponentePokemon />
+      <ComponentePokemon id={37}/>
     </>
   )
 }

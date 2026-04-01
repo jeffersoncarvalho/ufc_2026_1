@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-function ComponentePokemon() {
+function ComponentePokemon(props) {
 
     const [nome, setNome] = useState("")
     const [imagem, setImagem] = useState("")
@@ -8,7 +8,7 @@ function ComponentePokemon() {
     useEffect(
         () => {
             
-            fetch("https://pokeapi.co/api/v2/pokemon/25")
+            fetch("https://pokeapi.co/api/v2/pokemon/"+props.id)
             .then(
                 (resposta) => {
                     return resposta.json()
@@ -17,7 +17,6 @@ function ComponentePokemon() {
             .then(
                 (dados) => {
                     console.log(dados.name)
-                    //console.log(dados.sprites.front_default)
                     setNome(dados.name)
                     setImagem(dados.sprites.front_default)
                 }
@@ -30,7 +29,7 @@ function ComponentePokemon() {
 
     return (
         <div>
-            <h1>Pokemon: {nome[0].toUpperCase()+nome.slice(1)}</h1>
+            <h1>Pokemon: {nome.charAt(0).toUpperCase()+nome.slice(1)}</h1>
             <img src={imagem} width="100px" />
         </div>
     )
