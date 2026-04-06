@@ -5,10 +5,12 @@
 //import PokemonPages from "./components/aula_03/PokemonPages";
 //import FormularioAluno from "./components/aula_04/FormularioAluno";
 //import MeuContador from "./components/aula_05/MeuContador";
-import CarregarPokemons from "./components/aula_06/CarregarPokemons";
+//import CarregarPokemons from "./components/aula_06/CarregarPokemons";
+import SistemaVotacao from "./components/atividade_01/SistemaVotacao";
+
 const App = () => 
-  <div className="container">
-    <CarregarPokemons />
+  <div>
+    <SistemaVotacao />
   </div>
 
 /*const App = () => 
