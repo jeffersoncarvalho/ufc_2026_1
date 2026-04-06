@@ -1,12 +1,13 @@
 //import PokemonPages from "./components/aula_03/PokemonPages"
 //import MeuFormulario from "./components/aula_04/MeuFormulario"
 //import MeuContador from "./components/aula_05/MeuContador"
-import ComponentePokemon from "./components/aula_06/ComponentePokemon"
+//import ComponentePokemon from "./components/aula_06/ComponentePokemon"
+import SistemaVotacao from "./components/atividade_01/SistemaVotacao"
 
 const App = () => {
   return (
     <>
-      <ComponentePokemon id={37}/>
+      <SistemaVotacao/>
     </>
   )
 }
