@@ -59,7 +59,7 @@ const SistemaVotacao = () => {
                     cidades.map(
                         (cidade) => 
                         <button
-                            onClick={()=>votaCidade(cidade.nome)}
+                            onClick={() => votaCidade(cidade.nome)}
                         >
                             {cidade.nome}
                         </button>
