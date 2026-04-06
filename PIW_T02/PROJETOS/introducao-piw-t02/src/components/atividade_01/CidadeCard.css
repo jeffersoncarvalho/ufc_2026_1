@@ -1,5 +1,14 @@
 .card {
     border: 1px solid gray;
     border-radius: 5px;
+    padding: 5px;
 
+    font-family: 'Courier New', Courier, monospace;
+    background-color: antiquewhite;
+}
+.titulo {
+    text-align: center;
+}
+.imagem {
+    text-align: center;
 }

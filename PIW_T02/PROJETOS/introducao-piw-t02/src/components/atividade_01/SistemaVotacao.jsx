@@ -10,22 +10,33 @@ const SistemaVotacao = () => {
             votos: 0
         },
         {
-            nome: "Quixadá",
+            nome: "Quixeramobim",
             imagem: "https://www.quixada.ufc.br/wp-content/uploads/2015/11/Jo%C3%A3o-225x300.png",
             votos: 0
         },
         {
-            nome: "Quixadá",
+            nome: "Ibaretema",
             imagem: "https://www.quixada.ufc.br/wp-content/uploads/2015/11/Jo%C3%A3o-225x300.png",
             votos: 0
         },
         {
-            nome: "Quixadá",
+            nome: "Iguatu",
             imagem: "https://www.quixada.ufc.br/wp-content/uploads/2015/11/Jo%C3%A3o-225x300.png",
             votos: 0
         },
         
     ]
+
+    function votaCidade(nome) {
+        let index = 0;
+        for (index = 0; index < cidades.length; index++){
+            if(cidades[index].nome == nome) {
+                cidades[index].votos = cidades[index].votos + 1
+                console.log("Nome: " + nome + " Votos: " + cidades[index].votos)
+                break
+            }
+        }
+    }
 
     return (
         <div className="container">
@@ -40,6 +51,18 @@ const SistemaVotacao = () => {
                             imagem={cidade.imagem}
                             votos={cidade.votos}
                         />
+                    )
+                }
+            </div>
+            <div className="botoes">
+                {
+                    cidades.map(
+                        (cidade) => 
+                        <button
+                            onClick={()=>votaCidade(cidade.nome)}
+                        >
+                            {cidade.nome}
+                        </button>
                     )
                 }
             </div>
