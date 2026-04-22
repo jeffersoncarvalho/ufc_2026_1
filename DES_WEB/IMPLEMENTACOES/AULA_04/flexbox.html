@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+        }
+        .container-01 {
+            display: flex;
+            width: 100%;
+            background-color: blue;
+            padding: 10px;
+            color: white;
+            justify-content: space-between;
+        }
+        .container-02 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: lightcyan;
+        }
+
+        .container-02 a {
+            color: blue;
+        }
+
+        .container-04 {
+            display: flex;
+            
+        }
+
+        .container-04 .div-01 {
+            background-color: lightblue;
+            height: 100px;
+            flex: 1;
+        }
+        .container-04 .div-02 {
+            background-color: lightskyblue;
+            height: 100px;
+            flex: 2;
+        }
+        .container-04 .div-03 {
+            background-color: lightblue;
+            height: 100px;
+            flex: 1;
+        }
+        .container-03 {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .container-03 div {
+            height: 100px;
+            width: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="container-01">
+            <span>17 de março 2022</span>
+            <span>Sign Up Login</span>
+        </div>
+        <div class="container-02">
+            <a>Assinar</a>
+            <h2>Awesome Logo</h2>
+            <a>Ícones</a>
+        </div>
+        <div class="container-03">
+            <div style="background-color: red;">
+                5
+            </div>
+            <div style="background-color: green;">
+                4
+            </div>
+            <div style="background-color: yellow;">
+                3
+            </div>
+            <div style="background-color: burlywood">
+                2
+            </div>
+            <div style="background-color: blueviolet">
+                1
+            </div>
+        </div>
+        <div class="container-04">
+            <div class="div-01">
+
+            </div>
+            <div class="div-02">
+                
+            </div>
+            <div class="div-03">
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

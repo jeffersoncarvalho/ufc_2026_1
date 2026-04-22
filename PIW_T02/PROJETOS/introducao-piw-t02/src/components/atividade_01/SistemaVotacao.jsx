@@ -1,42 +1,55 @@
 import "./SistemaVotacao.css"
+import cidadesData from "./cidades_dados"
+
 import CidadeCard from "./CidadeCard"
+
+import { useEffect, useState } from "react"
 
 const SistemaVotacao = () => {
 
-    const cidades = [
-        {
-            nome: "Quixadá",
-            imagem: "https://www.quixada.ufc.br/wp-content/uploads/2015/11/Jo%C3%A3o-225x300.png",
-            votos: 0
-        },
-        {
-            nome: "Quixeramobim",
-            imagem: "https://www.quixada.ufc.br/wp-content/uploads/2015/11/Jo%C3%A3o-225x300.png",
-            votos: 0
-        },
-        {
-            nome: "Ibaretema",
-            imagem: "https://www.quixada.ufc.br/wp-content/uploads/2015/11/Jo%C3%A3o-225x300.png",
-            votos: 0
-        },
-        {
-            nome: "Iguatu",
-            imagem: "https://www.quixada.ufc.br/wp-content/uploads/2015/11/Jo%C3%A3o-225x300.png",
-            votos: 0
-        },
-        
-    ]
+    const [cidades, setCidades] = useState(cidadesData)
+    const [desabilitar, setDesabilitar] = useState(false)
 
-    function votaCidade(nome) {
-        let index = 0;
-        for (index = 0; index < cidades.length; index++){
+    useEffect(
+        () => {
+            
+            for( const cidade of cidades) {
+               if(cidade.votos >= 10) {
+                setDesabilitar((desabilitarAnterior) => !desabilitarAnterior)
+                alert(`A cidade mais votada foi ${cidade.nome}`)
+               }
+            }
+
+        }
+        ,
+        [cidades]
+    )
+    
+
+    function votaCidadeV2(nome) {
+        const novaCidades = 
+        cidades.map(
+            (cidade) => {
+                if( cidade.nome == nome) {
+                    return ({
+                        ...cidade, votos: cidade.votos + 1
+                    })
+                } else return cidade
+            }
+        )
+        setCidades(novaCidades)
+    }
+
+    /*function votaCidade(nome) {
+        
+        for (let index = 0; index < cidades.length; index++){
             if(cidades[index].nome == nome) {
                 cidades[index].votos = cidades[index].votos + 1
                 console.log("Nome: " + nome + " Votos: " + cidades[index].votos)
                 break
             }
         }
-    }
+    }*/
 
     return (
         <div className="container">
@@ -59,7 +72,8 @@ const SistemaVotacao = () => {
                     cidades.map(
                         (cidade) => 
                         <button
-                            onClick={() => votaCidade(cidade.nome)}
+                            onClick={() => votaCidadeV2(cidade.nome)}
+                            disabled = {desabilitar}
                         >
                             {cidade.nome}
                         </button>
