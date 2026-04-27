@@ -8,7 +8,7 @@ const professorRouter = require("./routers/ProfessorRouter")
 const app = express() //criando a API
 const PORT = 3000
 
-app.use(express.static(path.join(__dirname,"..","public")))
+//app.use(express.static(path.join(__dirname,"..","public")))
 app.use("/api/piwt01/professor",professorRouter)
 
 app.listen(
