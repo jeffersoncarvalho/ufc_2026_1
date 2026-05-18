@@ -6,11 +6,13 @@
 //import FormularioAluno from "./components/aula_04/FormularioAluno";
 //import MeuContador from "./components/aula_05/MeuContador";
 //import CarregarPokemons from "./components/aula_06/CarregarPokemons";
-import SistemaVotacao from "./components/atividade_01/SistemaVotacao";
+//import SistemaVotacao from "./components/atividade_01/SistemaVotacao";
+//import CompA from "./components/aula_07/useContext/CompA";
+import EstudoDoRef from "./components/aula_07/useRef/EstudoDoRef";
 
 const App = () => 
   <div>
-    <SistemaVotacao />
+    <EstudoDoRef />
   </div>
 
 /*const App = () => 
@@ -58,6 +60,9 @@ const App = () =>
   );
 };*/
 
+const Outro = () => 
+  <div>
 
+  </div>
 
 export default App;

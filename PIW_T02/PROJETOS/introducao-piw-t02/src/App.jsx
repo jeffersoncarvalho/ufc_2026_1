@@ -2,15 +2,17 @@
 //import MeuFormulario from "./components/aula_04/MeuFormulario"
 //import MeuContador from "./components/aula_05/MeuContador"
 //import ComponentePokemon from "./components/aula_06/ComponentePokemon"
-import SistemaVotacao from "./components/atividade_01/SistemaVotacao"
+//import SistemaVotacao from "./components/atividade_01/SistemaVotacao"
+//import { MyA as A, MyB, ParentComponent } from "./components/aula_07/ParentComponent"
+//import CompA from "./components/aula_08/Contexto/CompA"
 
-const App = () => {
-  return (
-    <>
-      <SistemaVotacao/>
-    </>
-  )
-}
+import Contador from "./components/aula_08/Ref/Contador"
+
+const App = () => <>
+<Contador />
+</>
+  
+
 
 export default App
 

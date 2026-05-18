@@ -12,4 +12,11 @@ router.get(
     }
 )
 
+router.get(
+    "/:id",
+    () => {
+
+    }
+)
+
 module.exports = router
