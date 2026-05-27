@@ -8,11 +8,13 @@
 //import CarregarPokemons from "./components/aula_06/CarregarPokemons";
 //import SistemaVotacao from "./components/atividade_01/SistemaVotacao";
 //import CompA from "./components/aula_07/useContext/CompA";
-import EstudoDoRef from "./components/aula_07/useRef/EstudoDoRef";
+//import EstudoDoRef from "./components/aula_07/useRef/EstudoDoRef";
+//import RevisaoRef from "./components/aula_07/useRef/RevisaoRef";
+import ProfessorList from "./components/app_universidade_qx/screens/ProfessorList";
 
 const App = () => 
   <div>
-    <EstudoDoRef />
+    <ProfessorList />
   </div>
 
 /*const App = () => 

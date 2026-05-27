@@ -13,6 +13,21 @@ class ProfessorRepository {
     async listarTodos() {
         return Promise.resolve(professores)
     }
+
+    async buscarPorId(id) {
+        const professorEncontrado = professores.find(
+            (professor) => professor.id == id
+        )
+        if(professorEncontrado == null) {
+            return Promise.resolve(null)
+        }
+        return Promise.resolve(professorEncontrado)
+    }
+
+    async adicionar(professor) {
+        //professores:professor
+        professores.push(professor)
+    }
 }
 
 //module.exports = ProfessorRepository

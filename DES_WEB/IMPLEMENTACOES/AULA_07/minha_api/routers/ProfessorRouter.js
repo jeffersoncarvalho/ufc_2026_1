@@ -23,4 +23,23 @@ router.get(
     }
 )
 
+router.get(
+    "/:id",
+    async (request, resolve) => {
+        const professor = await professorService.buscarPorId(request.params.id)
+        //resolve.json(professor)
+        if(!professor) resolve.status(404).json({erro:"Professor não encontrado!"})
+        else resolve.json(professor)
+    }
+)
+
+router.post(
+    "/",
+    express.json()
+    ,async (request, resolve) =>{
+        const ok = await professorService.adicionar(request.body)
+        resolve.json({msg:"adicionado com sucesso!"})
+    }
+)
+
 module.exports = router
