@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Professores</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #0f0e0b;
+      --paper:     #f5f0e8;
+      --accent:    #c94a2b;
+      --muted:     #9e9488;
+      --card-bg:   #fffef9;
+      --border:    #ddd8cc;
+      --shadow:    rgba(15,14,11,.08);
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--paper);
+      font-family: 'DM Sans', sans-serif;
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    /* ── noise overlay ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+      opacity: .5;
+    }
+
+    .wrap { position: relative; z-index: 1; width: 100%; max-width: 640px; }
+
+    /* ── header ── */
+    header { margin-bottom: 2.8rem; text-align: center; }
+
+    .label {
+      display: inline-block;
+      font-size: .68rem; font-weight: 500; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: .6rem;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.4rem, 7vw, 3.6rem);
+      line-height: 1.05; color: var(--ink);
+    }
+
+    h1 em { font-style: italic; color: var(--accent); }
+
+    .subtitle {
+      margin-top: .7rem;
+      font-size: .9rem; color: var(--muted); font-weight: 300;
+    }
+
+    /* ── divider ── */
+    .divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 2rem 0;
+    }
+
+    /* ── CONFIG BLOCK ── */
+    .config-block {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 12px var(--shadow);
+    }
+    .config-block h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem; margin-bottom: 1rem;
+      color: var(--muted); font-weight: 400;
+      letter-spacing: .02em;
+    }
+    .fields { display: grid; gap: .8rem; }
+    .field label {
+      display: block; font-size: .72rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: .1em;
+      color: var(--muted); margin-bottom: .3rem;
+    }
+    .field input {
+      width: 100%; padding: .55rem .8rem;
+      border: 1px solid var(--border); border-radius: 6px;
+      background: var(--paper); color: var(--ink);
+      font-family: 'DM Sans', sans-serif; font-size: .88rem;
+      transition: border-color .2s;
+      outline: none;
+    }
+    .field input:focus { border-color: var(--accent); }
+    .field input::placeholder { color: var(--muted); }
+
+    /* ── button ── */
+    #btnCarregar {
+      width: 100%;
+      padding: .9rem 1.6rem;
+      background: var(--ink); color: var(--paper);
+      border: none; border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .92rem; font-weight: 500; letter-spacing: .04em;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: .6rem;
+      transition: background .2s, transform .12s;
+      position: relative; overflow: hidden;
+    }
+    #btnCarregar:hover  { background: var(--accent); transform: translateY(-1px); }
+    #btnCarregar:active { transform: translateY(0); }
+    #btnCarregar:disabled { opacity: .55; cursor: not-allowed; transform: none; }
+
+    .btn-icon { font-size: 1.1em; }
+
+    /* spinner */
+    .spinner {
+      width: 16px; height: 16px;
+      border: 2px solid rgba(245,240,232,.3);
+      border-top-color: var(--paper);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      display: none;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    #btnCarregar.loading .btn-label { display: none; }
+    #btnCarregar.loading .btn-icon  { display: none; }
+    #btnCarregar.loading .spinner   { display: block; }
+
+    /* ── status / error ── */
+    #status {
+      margin-top: 1.2rem; font-size: .85rem;
+      min-height: 1.2rem; text-align: center; color: var(--muted);
+    }
+    #status.error { color: var(--accent); }
+
+    /* ── results ── */
+    #resultado { margin-top: 1.8rem; }
+
+    .results-header {
+      display: flex; align-items: baseline; justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    .results-header h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+    }
+    .badge {
+      font-size: .72rem; font-weight: 500;
+      letter-spacing: .1em; text-transform: uppercase;
+      background: var(--accent); color: #fff;
+      padding: .2rem .55rem; border-radius: 99px;
+    }
+
+    .list { display: grid; gap: .9rem; }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem 1.4rem;
+      box-shadow: 0 2px 10px var(--shadow);
+      display: flex; align-items: center; gap: 1rem;
+      opacity: 0; transform: translateY(14px);
+      animation: slideUp .4s ease forwards;
+    }
+    @keyframes slideUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .avatar {
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem; color: #fff;
+      text-transform: uppercase;
+    }
+    .card-info { flex: 1; min-width: 0; }
+    .card-nome {
+      font-weight: 500; font-size: .97rem;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .card-curso {
+      font-size: .8rem; color: var(--muted); margin-top: .15rem;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .curso-tag {
+      display: inline-block;
+      background: var(--paper); border: 1px solid var(--border);
+      border-radius: 4px; padding: .1rem .45rem;
+      font-size: .75rem; color: var(--ink);
+    }
+
+    .empty {
+      text-align: center; color: var(--muted);
+      font-style: italic; padding: 2rem 0;
+      font-family: 'DM Serif Display', serif; font-size: 1.1rem;
+    }
+
+    /* staggered delay */
+    .card:nth-child(1)  { animation-delay: .04s }
+    .card:nth-child(2)  { animation-delay: .10s }
+    .card:nth-child(3)  { animation-delay: .16s }
+    .card:nth-child(4)  { animation-delay: .22s }
+    .card:nth-child(5)  { animation-delay: .28s }
+    .card:nth-child(6)  { animation-delay: .34s }
+    .card:nth-child(7)  { animation-delay: .40s }
+    .card:nth-child(8)  { animation-delay: .46s }
+    .card:nth-child(n+9){ animation-delay: .50s }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <span class="label">Firebase Firestore</span>
+    <h1>Corpo <em>Docente</em></h1>
+    <p class="subtitle">Consulta à coleção <code>professores</code></p>
+  </header>
+
+  <div class="config-block">
+    <h2>🔧 Configuração do Firebase</h2>
+    <div class="fields">
+      <div class="field">
+        <label>API Key</label>
+        <input id="apiKey"            type="text"  placeholder="AIzaSy..." />
+      </div>
+      <div class="field">
+        <label>Auth Domain</label>
+        <input id="authDomain"        type="text"  placeholder="seu-projeto.firebaseapp.com" />
+      </div>
+      <div class="field">
+        <label>Project ID</label>
+        <input id="projectId"         type="text"  placeholder="seu-projeto-id" />
+      </div>
+    </div>
+  </div>
+
+  <button id="btnCarregar">
+    <span class="btn-icon">📋</span>
+    <span class="btn-label">Carregar Professores</span>
+    <div class="spinner"></div>
+  </button>
+
+  <div id="status"></div>
+
+  <div id="resultado"></div>
+
+</div>
+
+<!-- Firebase v10 (modular via CDN compat shim) -->
+<script type="module">
+  import { initializeApp }                from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const btn       = document.getElementById('btnCarregar');
+  const status    = document.getElementById('status');
+  const resultado = document.getElementById('resultado');
+
+  btn.addEventListener('click', async () => {
+    const apiKey     = document.getElementById('apiKey').value.trim();
+    const authDomain = document.getElementById('authDomain').value.trim();
+    const projectId  = document.getElementById('projectId').value.trim();
+
+    // ── validação básica ──
+    if (!apiKey || !projectId) {
+      setStatus('⚠️ Preencha ao menos a API Key e o Project ID.', true);
+      return;
+    }
+
+    setLoading(true);
+    setStatus('Conectando ao Firestore…');
+    resultado.innerHTML = '';
+
+    try {
+      const app = initializeApp({ apiKey, authDomain, projectId }, `app-${Date.now()}`);
+      const db  = getFirestore(app);
+
+      const snap = await getDocs(collection(db, 'professores'));
+
+      if (snap.empty) {
+        resultado.innerHTML = '<p class="empty">Nenhum professor encontrado na coleção.</p>';
+        setStatus('');
+        return;
+      }
+
+      const docs = [];
+      snap.forEach(doc => docs.push({ id: doc.id, ...doc.data() }));
+
+      renderCards(docs);
+      setStatus('');
+
+    } catch (err) {
+      console.error(err);
+      setStatus(`Erro: ${err.message}`, true);
+    } finally {
+      setLoading(false);
+    }
+  });
+
+  function renderCards(docs) {
+    const header = `
+      <div class="results-header">
+        <h2>Professores</h2>
+        <span class="badge">${docs.length} encontrado${docs.length !== 1 ? 's' : ''}</span>
+      </div>`;
+
+    const cards = docs.map(d => {
+      const nome  = d.nome  || '(sem nome)';
+      const curso = d.curso || '(sem curso)';
+      const inicial = nome.charAt(0);
+      return `
+        <div class="card">
+          <div class="avatar">${inicial}</div>
+          <div class="card-info">
+            <div class="card-nome">${escapeHtml(nome)}</div>
+            <div class="card-curso">
+              <span class="curso-tag">${escapeHtml(curso)}</span>
+            </div>
+          </div>
+        </div>`;
+    }).join('');
+
+    resultado.innerHTML = header + `<div class="list">${cards}</div>`;
+  }
+
+  function setLoading(on) {
+    btn.disabled = on;
+    btn.classList.toggle('loading', on);
+  }
+
+  function setStatus(msg, isError = false) {
+    status.textContent = msg;
+    status.className = isError ? 'error' : '';
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+</script>
+</body>
+</html>
